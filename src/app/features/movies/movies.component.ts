@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GenresInterface, MoviesInterface } from '@app/core/interfaces';
 import { GenresService } from '@app/core/services/genres/genres.service';
 import { MoviesService } from '@app/core/services/movies/movies.service';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -21,7 +22,8 @@ export class MoviesComponent {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly moviesService: MoviesService,
-    private readonly genresService: GenresService
+    private readonly genresService: GenresService,
+    private readonly toastr: ToastrService
   ) {
     this.init();
   }
@@ -58,7 +60,9 @@ export class MoviesComponent {
       const response = await this.moviesService.findAll();
       const data: MoviesInterface[] = response.data as MoviesInterface[];
       this.movies = data;
-    } catch (err) {}
+    } catch (err) {
+      if(err instanceof Error)this.toastr.error(err.message, 'Error');
+    }
   }
 
   async findAllGenres() {
@@ -66,7 +70,10 @@ export class MoviesComponent {
       const response = await this.genresService.findAll();
       const data = response.data as GenresInterface[];
       this.genres = data;
-    } catch (err) {}
+    } catch (err) {
+      if(err instanceof Error)this.toastr.error(err.message, 'Error');
+      
+    }
   }
 
   onFilterMoviesByQueryParams() {
