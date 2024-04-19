@@ -38,7 +38,7 @@ ng serve
 Se utilizo axios por requerimiento del documento pero angular maneja lo que es HttpClient para manejar las peticiones lo cual es más optimo utilizar.
 
 ## Notas
-Cambiar el baseUrl en el environment
+Puedo cambiar el puerto y baseUrl en los environments.
 
 
 
