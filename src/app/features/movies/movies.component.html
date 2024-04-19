@@ -1,119 +1,30 @@
-<div class="h-[40px] w-full bg-accent flex items-center px-5 mb-10">
-  <p class="text-lg font-semibold">AllMoviesHd</p>
-</div>
+<app-navbar></app-navbar>
 
-<div class="grid grid-cols-1 lg:grid-cols-5 gap-x-4 w-11/12 mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-x-4 w-10/12 lg:w-11/12 mx-auto">
   <div
-    class="flex items-center lg:grid col-span-1 p-4 gap-y-4 rounded-xl content-start bg-secondary cursor-pointer"
+    class="flex items-center justify-center lg:justify-between lg:grid col-span-1 lg:grid-cols-1 p-4 gap-4 mb-4 lg:mb-0 rounded-xl bg-secondary h-fit lg:w-full"
   >
-    <p class="font-semibold text-lg text-tertiary hidden lg-block">Generos</p>
-    <div
-      (click)="onSelectGenre('Drama')"
-      class="rounded-lg p-2 h-fit bg-accent flex items-center content-center gap-x-2 justify-between"
-    >
-      <p class="text-primary font-semibold">Drama</p>
-      <span (click)="onRemoveGenre('Drama')" class="flex items-center cursor-pointer">
-        <ng-icon name="heroXCircle" class="text-xl"></ng-icon>
-      </span>
-    </div>
-    <div class="rounded-lg p-2 text-primary h-fit font-semibold bg-accent">
-      Drama
-    </div>
-    <div class="rounded-lg p-2 text-primary h-fit font-semibold bg-accent">
-      Drama
-    </div>
-    <div class="rounded-lg p-2 text-primary h-fit font-semibold bg-accent">
-      Drama
-    </div>
+    <p class="font-semibold text-lg text-tertiary hidden lg:block">Generos</p>
+    <ng-container *ngFor="let genre of genres; trackBy: trackByMovieId">
+     
+      <app-genre-card [isSelected]="genresQueryParams.includes(genre.name)" (removeGenre)="onRemoveGenre(genre.name)" (selectGenre)="onSelectGenre(genre.name)"  [genre]="genre" ></app-genre-card>
+    </ng-container>
+    
+    
   </div>
-  <div class="col-span-4">
-    
-    <div class="grid grid-col-1 lg:grid-cols-4  gap-4">
-    
-      <ng-container *ngFor="let movie of movies">
-        <div
-          
-          class="flex flex-col rounded-lg shadow-xl p-2 h-[380px] bg-secondary hover:scale-105 transition-all duration-150 delay-100 ease-in-out justify-between"
-        >
-          <div>
-            <img
-              class="h-[200px] object-cover"
-              src="https://www.cinestar.com.pe/assets/images/image-placeholder.png"
-              alt=""
-            />
-            <p class="text-tertiary text-lg pt-1">{{ movie.title }}</p>
-  
-            <div class="flex">
-              <svg
-                class="w-4 h-4 text-yellow-300 ms-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path
-                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                />
-              </svg>
-              <svg
-                class="w-4 h-4 text-yellow-300 ms-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path
-                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                />
-              </svg>
-              <svg
-                class="w-4 h-4 text-yellow-300 ms-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path
-                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                />
-              </svg>
-              <svg
-                class="w-4 h-4 text-yellow-300 ms-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path
-                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                />
-              </svg>
-              <svg
-                class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path
-                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                />
-              </svg>
-            </div>
-  
-            <p class="text-tertiary text-xs pt-1">
-              {{ movie.description }}
-            </p>
-          </div>
-  
-          <div class="flex gap-3">
-            <div class="py-1 px-2 text-xs rounded-lg font-semibold bg-accent">
-              <p>{{ movie.genre }}</p>
-            </div>
-          </div>
-        </div>
+  <div class="lg:col-span-4 grid gap-y-5">
+    <input
+      type="text"
+      class="p-2 bg-gray-300 text-black placeholder-black rounded-lg h-fit"
+      placeholder="Movie.."
+      (ngModelChange)="onSearch($event)"
+      [(ngModel)]="inputSearch"
+    />
+
+    <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <ng-container *ngFor="let movie of filterMovies">
+        <app-movie-card [movie]="movie"></app-movie-card>
       </ng-container>
     </div>
   </div>
- 
 </div>

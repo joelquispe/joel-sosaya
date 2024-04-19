@@ -1,0 +1,15 @@
+<div
+  (click)="onHandleGenre(genre.name)"
+  class="rounded-lg p-2 h-fit bg-accent flex items-center gap-x-2 justify-between cursor-pointer"
+>
+  <p class="text-primary font-semibold cursor-pointer text-xs lg:text-sm">
+    {{ genre.name }}
+  </p>
+  <span class="flex items-center cursor-pointer">
+    <ng-icon
+      *ngIf="isSelected"
+      name="heroXCircle"
+      class="text-xl hover:scale-125 transition-all duration-150 delay-100 ease-in-out"
+    ></ng-icon>
+  </span>
+</div>
