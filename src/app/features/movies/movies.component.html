@@ -6,11 +6,11 @@
   >
     <p class="font-semibold text-lg text-tertiary hidden lg:block">Generos</p>
     <ng-container *ngFor="let genre of genres; trackBy: trackByMovieId">
-     
+
       <app-genre-card [isSelected]="genresQueryParams.includes(genre.name)" (removeGenre)="onRemoveGenre(genre.name)" (selectGenre)="onSelectGenre(genre.name)"  [genre]="genre" ></app-genre-card>
     </ng-container>
-    
-    
+
+
   </div>
   <div class="lg:col-span-4 grid gap-y-5">
     <input
@@ -27,4 +27,5 @@
       </ng-container>
     </div>
   </div>
+  <h1></h1>
 </div>
